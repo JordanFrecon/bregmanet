@@ -18,9 +18,9 @@
 
 ### :clipboard: Requirements
 
-- PyTorch version >=1.4.0
+- PyTorch version >=1.7.1
 - Python version >=3.6
-
+- Torchvision version >=0.8.2
 
 
 ### :hammer: Installation
@@ -43,15 +43,15 @@ Development versions can be found [here](https://test.pypi.org/project/bregmanet
 
 In order to load untrained Bregman neural models, proceed as follows.
 
-<details><summary>Multi-Layer Perceptrons</summary><p>
+**Bregman Multi-Layer Perceptrons**
 
 ```python
 import bregmanet
 model = bregmanet.MLP(activation_name='sigmoid', num_neurons=[1024, 1024, 512], input_dim=1024, output_dim=10)
 ```
-</p></details>
 
-<details><summary>ResNet</summary><p>
+
+**Bregman Residual Networks**
 
 For instance, a BregmanResNet20 with SoftPlus activation function can be defined as :
 
@@ -60,7 +60,6 @@ import bregmanet
 model = bregmanet.bresnet20(activation='softplus')
 ```
 
-</p></details>
 
 ### :rocket: Demos
 
