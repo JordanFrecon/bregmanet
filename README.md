@@ -1,5 +1,7 @@
 # BregmaNet : Bregman Neural Networks
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 [BregmaNet](https://github.com/JordanFrecon/bregmanet) is a PyTorch library providing multiple Bregman neural networks. To date, implemented models cover Bregman variants of multi-layer perceptrons and various residual networks.
 
 
