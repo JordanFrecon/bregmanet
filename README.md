@@ -1,2 +1,2 @@
-# BregmaNet
+# bregmanet
 Bregman Neural Network
