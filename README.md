@@ -2,8 +2,11 @@
 
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[BregmaNet](https://github.com/JordanFrecon/bregmanet) is a PyTorch library providing multiple Bregman neural networks. To date, implemented models cover Bregman variants of multi-layer perceptrons and various residual networks.
+[BregmaNet](https://github.com/JordanFrecon/bregmanet) is a PyTorch library providing multiple [Bregman Neural Networks](https://jordan-frecon.com/download/2022_Frecon_J_p-icml_bnn.pdf).
+To date, implemented models cover Bregman variants of multi-layer perceptrons and various residual networks.
 
+
+**Contributor:** Jordan Frécon (INSA Rouen Normandy, France)
 
 ## Table of Contents
 
@@ -11,7 +14,7 @@
 2. [Getting Started](#Getting-Started)
 3. [List of Supported Models](#List-of-Supported-Models)
 4. [Citation](#Citation)
-5. [Contribution](#Contribution-and-Acknowledgments)
+5. [Contribution and Acknowledgments](#Contribution-and-Acknowledgments)
 
 
 
@@ -30,38 +33,16 @@
 pip install bregmanet
 ```
 
-Development versions can be found [here](https://test.pypi.org/project/bregmanet/).
+In development versions can be found [here](https://test.pypi.org/project/bregmanet/).
 
 ## Getting Started
 
 ###  :warning: Precautions
 
 * All images should be scaled within the domain range of the activation function.
-* MLP models provided are designed for 1-dimensional data inputs.
-
-
-###  :page_with_curl: Models
-
-In order to load untrained Bregman neural models, proceed as follows.
-
-<details><summary>Multi-Layer Perceptrons</summary><p>
-
-```python
-import bregmanet
-model = bregmanet.MLP(activation='sigmoid', num_neurons=[1024, 1024, 512], input_dim=1024, output_dim=10)
-```
-</p></details>
-
-<details><summary>ResNet</summary><p>
-
-For instance, a BregmanResNet20 with SoftPlus activation function can be defined as :
-
-```python
-import bregmanet
-model = bregmanet.bresnet20(activation='softplus')
-```
-
-</p></details>
+* MLP models provided work only for 1-dimensional data inputs.
+* MLP models are designed without a softmax final layer.
+* All models need to be trained first. If you wish to provide your pretrained models, please [contribute](#Contribution-and-Acknowledgments).
 
 ### :rocket: Demos
 
@@ -73,9 +54,42 @@ Multiple demo files can be found [there](https://github.com/JordanFrecon/bregman
 - *demo_imagenet_resnet.py*: training of ResNet18 on the ImageNet dataset.
 
 
+
+###  :page_with_curl: Loading a Model
+
+To date, all Bregman neural models provided are not trained.
+If needed, a training procedure is made available [here](https://github.com/JordanFrecon/bregmanet/blob/main/misc/optimization.py).
+In order to load a model, proceed as follows.
+
+<details><summary>Multi-Layer Perceptrons</summary><p>
+
+For a *sigmoid*-based MLP with 
+- a linear input accepting 1d tensors of size 1024
+- 3 hidden layers of size (1024, 1024, 512)
+- a linear output layer mapping to 1d tensors of size 10
+
+```python
+import bregmanet
+model = bregmanet.MLP(activation='sigmoid', num_neurons=[1024, 1024, 512], input_dim=1024, output_dim=10)
+```
+</p></details>
+
+<details><summary>ResNet</summary><p>
+
+For a BregmanResNet20 with SoftPlus activation function:
+
+```python
+import bregmanet
+model = bregmanet.bresnet20(activation='softplus')
+```
+
+</p></details>
+
+
 ## List of Supported Models
 
-The following list reports all models currently supporting a Bregman variant. If you have any issue with one of them, please contact us.
+The following list reports all models currently supporting a Bregman variant. 
+If you have any issue with one of them or wish to provide your own, please [contact us](mailto:jordan.frecon@gmail.com).
 
 - MLP
 - ResNet18
@@ -120,4 +134,4 @@ Other models are devised by hinging upon the official PyTorch/TorchVision reposi
 - ResNeXt: ["Aggregated Residual Transformation for Deep Neural Networks"](https://arxiv.org/pdf/1611.05431.pdf)
 - WideResNet: ["Wide Residual Networks"](https://arxiv.org/pdf/1605.07146.pdf)
 
-All kind of contributions are welcome, do not hesitate to contact us!
+All kind of contributions are welcome, do not hesitate to [contact us!](mailto:jordan.frecon@gmail.com)

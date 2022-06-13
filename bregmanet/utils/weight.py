@@ -2,7 +2,9 @@ import torch
 import torch.nn as nn
 
 
-""" This module contains various classes and functions to initialize the weights of neural nets """
+""" 
+Definition of various classes and functions to initialize the weights of neural nets
+"""
 
 
 class LinearSymmetric(nn.Module):
