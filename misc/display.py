@@ -253,7 +253,6 @@ def display_output(model, data, num_fig=None, xlim=None, ylim=None):
                 x = model.activation(model.offset(model.reparametrization[idl](x)) + model.lin[idl](x))
             else:
                 x = model.activation(model.lin[idl](x))
-            # x = model.activation(model.offset(x) + model.lin[idl](x))
 
         vec = np.arange(ids * data.batch_size, (ids + 1) * data.batch_size)
         x_all[vec] = np.array(x.cpu().detach().numpy())

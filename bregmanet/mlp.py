@@ -1,7 +1,7 @@
+import torch
 import torch.nn as nn
 import bregmanet.utils.weight as weight
-import bregmanet.utils.activation as activation
-import torch
+import bregmanet.utils.activation as act
 
 
 class MLP(nn.Module):
@@ -23,12 +23,14 @@ class MLP(nn.Module):
 
         """
 
-    def __init__(self, activation_name, version='bregman', hidden_dim=None, input_dim=None, output_dim=1,
+    def __init__(self, activation, version='bregman', hidden_dim=None, input_dim=None, output_dim=1,
                  init='random', weight_norm=False):
         super().__init__()
         version = version.lower()
-        activation_name = activation_name.lower()
+        activation = activation.lower()
         init_param = weight.parameter_initialization(version=version, init_type=init)
+        if version == 'bregman':
+            self.__class__.__name__ = 'BregmanMLP'
 
         # Parameters
         self.num_neurons = [input_dim] if hidden_dim is None else hidden_dim
@@ -52,7 +54,7 @@ class MLP(nn.Module):
             # Classical linear part
             self.lin.append(weight.linear_with_init(in_neurons, out_neurons, init=init_param['hidden'],
                                                     weight_norm=weight_norm))
-        self.activation, self.offset, self.range = activation.get(activation_name=activation_name, version=version)
+        self.activation, self.offset, self.range = act.get(activation_name=activation, version=version)
 
         # Output layer
         self.output = weight.linear_with_init(self.num_neurons[-1], output_dim, init=init_param['output'])

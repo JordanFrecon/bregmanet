@@ -10,7 +10,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.nn.init as init
 import bregmanet.utils.activation as act
-torch.manual_seed(3407)
 
 __all__ = ['BregmanResNet', 'bresnet20', 'bresnet32', 'bresnet44', 'bresnet56', 'bresnet110', 'bresnet1202']
 

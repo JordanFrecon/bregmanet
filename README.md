@@ -1,6 +1,6 @@
 # BregmaNet : Bregman Neural Networks
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+ [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [BregmaNet](https://github.com/JordanFrecon/bregmanet) is a PyTorch library providing multiple Bregman neural networks. To date, implemented models cover Bregman variants of multi-layer perceptrons and various residual networks.
 
@@ -9,8 +9,9 @@
 
 1. [Requirements and Installation](#Requirements-and-Installation)
 2. [Getting Started](#Getting-Started)
-3. [Citation](#Citation)
-4. [Contribution](#Contribution-and-Acknowledgments)
+3. [List of Supported Models](#List-of-Supported-Models)
+4. [Citation](#Citation)
+5. [Contribution](#Contribution-and-Acknowledgments)
 
 
 
@@ -18,7 +19,7 @@
 
 ### :clipboard: Requirements
 
-- PyTorch version >=1.7.1
+- PyTorch version >=1.4.0
 - Python version >=3.6
 - Torchvision version >=0.8.2
 
@@ -35,7 +36,7 @@ Development versions can be found [here](https://test.pypi.org/project/bregmanet
 
 ###  :warning: Precautions
 
-* All images should be scaled to the domain range of the activation function.
+* All images should be scaled within the domain range of the activation function.
 * MLP models provided are designed for 1-dimensional data inputs.
 
 
@@ -43,15 +44,15 @@ Development versions can be found [here](https://test.pypi.org/project/bregmanet
 
 In order to load untrained Bregman neural models, proceed as follows.
 
-**Bregman Multi-Layer Perceptrons**
+<details><summary>Multi-Layer Perceptrons</summary><p>
 
 ```python
 import bregmanet
-model = bregmanet.MLP(activation_name='sigmoid', num_neurons=[1024, 1024, 512], input_dim=1024, output_dim=10)
+model = bregmanet.MLP(activation='sigmoid', num_neurons=[1024, 1024, 512], input_dim=1024, output_dim=10)
 ```
+</p></details>
 
-
-**Bregman Residual Networks**
+<details><summary>ResNet</summary><p>
 
 For instance, a BregmanResNet20 with SoftPlus activation function can be defined as :
 
@@ -60,15 +61,37 @@ import bregmanet
 model = bregmanet.bresnet20(activation='softplus')
 ```
 
+</p></details>
 
 ### :rocket: Demos
 
 Multiple demo files can be found [there](https://github.com/JordanFrecon/bregmanet) in the *demo* folder. It contains:
-- *demo_toy_mlp.py*: training of MLPs on the Two-spiral toy dataset.
+- *demo_toy_mlp.py*: training of MLP on the Two-spiral toy dataset.
+- *demo_mnist_mlp.py*: training of MLP on the MNIST dataset.
 - *demo_cifar10_resnet.py*: training of ResNet20 on the CIFAR-10 dataset.
 - *demo_cifar100_resnet.py*: training of ResNet20 on the CIFAR-100 dataset.
 - *demo_imagenet_resnet.py*: training of ResNet18 on the ImageNet dataset.
 
+
+## List of Supported Models
+
+The following list reports all models currently supporting a Bregman variant. If you have any issue with one of them, please contact us.
+
+- MLP
+- ResNet18
+- ResNet20
+- ResNet32
+- ResNet34
+- ResNet44
+- ResNet56
+- ResNet101
+- Resnet110
+- ResNet152
+- Resnet1202
+- ResNeXt50_32x4d
+- ResNeXt101_32x8d
+- WideResNet50_2
+- WideResnet101_2
 
 
 ## Citation
@@ -91,6 +114,10 @@ If you use this package, please cite the following work:
 
 ## Contribution and Acknowledgments
 
-The proposed BregmanResNet for CIFAR-10 is based on a rework of the ResNet implementation of [Yerlan Idelbayev](https://github.com/akamaster/pytorch_resnet_cifar10).
+The proposed BregmanResNets for CIFAR-10 are based on a rework of the ResNet implementation of [Yerlan Idelbayev](https://github.com/akamaster/pytorch_resnet_cifar10).
+Other models are devised by hinging upon the official PyTorch/TorchVision repository. For more information, please refer to:
+- ResNet: ["Deep Residual Learning for Image Recognition"](https://arxiv.org/pdf/1512.03385.pdf) 
+- ResNeXt: ["Aggregated Residual Transformation for Deep Neural Networks"](https://arxiv.org/pdf/1611.05431.pdf)
+- WideResNet: ["Wide Residual Networks"](https://arxiv.org/pdf/1605.07146.pdf)
 
 All kind of contributions are welcome, do not hesitate to contact us!

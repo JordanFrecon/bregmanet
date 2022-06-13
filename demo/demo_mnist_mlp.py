@@ -1,7 +1,7 @@
 import torch
 from matplotlib import pyplot
-import networks as bnn
-from networks.utils import optimization as optim, display as dsp, utils as utils
+import bregmanet as bnn
+from misc import optimization as optim, display as dsp, utils as utils
 import time
 import torchvision
 import torchvision.transforms as transforms
@@ -37,8 +37,7 @@ if __name__ == '__main__':
     test_loader = torch.utils.data.DataLoader(dataset=test_set, batch_size=batch_size, pin_memory=True, num_workers=4)
 
     # Define and fit the model
-    #model_toy = bnn.MLP(version='bregman', activation_name='tanh', num_neurons=[5000]*5,
-    model_toy = bnn.MLP(version='bregman', activation_name='sigmoid', hidden_dim=[784, 2, 2],
+    model_toy = bnn.MLP(version='bregman', activation='sigmoid', hidden_dim=[784, 2, 2],
                         input_dim=784, output_dim=10, init='zero')
 
     model_learned, optim_meter = optim.fit(model_toy, data=train_loader, lr=1e-1, num_epochs=100, device=device,
@@ -49,10 +48,7 @@ if __name__ == '__main__':
     print('accuracy:\t', accuracy)
 
     # Display layers output (work best if 2 neurons per layer)
-    pyplot.rcParams["font.family"] = "serif"
-    pyplot.rcParams["font.size"] = "20"
     fig = dsp.display_output(model_learned, train_loader, xlim=[0, 1], ylim=[0, 1])
-    #pyplot.savefig("mnist_lastLayer_standard.pdf", bbox_inches="tight")
 
     # Display loss
     pyplot.figure(2)

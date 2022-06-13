@@ -3,24 +3,33 @@ from typing import Type, Any, Callable, Union, List, Optional
 import torch
 import torch.nn as nn
 from torch import Tensor
-import utils.activation as act
+import bregmanet.utils.activation as act
 import torch.nn.functional as F
 
 from torch.hub import load_state_dict_from_url
 from torch._C import _log_api_usage_once
 
 
+"""
+    ResNet models are from "Deep Residual Learning for Image Recognition" 
+        <https://arxiv.org/pdf/1512.03385.pdf>
+    ResNeXt models are from "Aggregated Residual Transformation for Deep Neural Networks"
+        <https://arxiv.org/pdf/1611.05431.pdf>
+    WideResNet models are from "Wide Residual Networks"
+        <https://arxiv.org/pdf/1605.07146.pdf>
+"""
+
 __all__ = [
     "ResNet",
     "bresnet18",
-    "resnet34",
-    "resnet50",
-    "resnet101",
-    "resnet152",
-    "resnext50_32x4d",
-    "resnext101_32x8d",
-    "wide_resnet50_2",
-    "wide_resnet101_2",
+    "bresnet34",
+    "bresnet50",
+    "bresnet101",
+    "bresnet152",
+    "bresnext50_32x4d",
+    "bresnext101_32x8d",
+    "wide_bresnet50_2",
+    "wide_bresnet101_2",
 ]
 
 
@@ -572,7 +581,7 @@ def _resnet(
 
 
 def _bresnet(
-    block: Type[Union[BregmanBasicBlock, Bottleneck]],  # Maybe have BregmanBottleNeck ?
+    block: Type[Union[BregmanBasicBlock, BregmanBottleneck]],  # Maybe have Bottleneck ?
     layers: List[int],
     num_classes: 1000,
     activation='softplus',
@@ -580,16 +589,6 @@ def _bresnet(
 ) -> BregmanResNet:
     model = BregmanResNet(block, layers, activation=activation, num_classes=num_classes, **kwargs)
     return model
-
-
-def resnet18(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""ResNet-18 model from
-    `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
-    """
-    return _resnet("resnet18", BasicBlock, [2, 2, 2, 2], pretrained, progress, **kwargs)
 
 
 def bresnet18(activation='softplus', version='bregman', **kwargs: Any):
@@ -601,24 +600,13 @@ def bresnet18(activation='softplus', version='bregman', **kwargs: Any):
         return _bresnet(BregmanBasicBlock, [2, 2, 2, 2], activation=activation, **kwargs)
 
 
-def resnet34(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""ResNet-34 model from
-    `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
+def bresnet34(activation='softplus', version='bregman', **kwargs: Any):
+    r"""Bregman ResNet-34 model
     """
-    return _resnet("resnet34", BasicBlock, [3, 4, 6, 3], pretrained, progress, **kwargs)
-
-
-def resnet50(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""ResNet-50 model from
-    `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
-    """
-    return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+    if version.lower() == 'standard':
+        return _resnet("resnet34", BasicBlock, [3, 4, 6, 3], **kwargs)
+    else:
+        return _bresnet(BregmanBasicBlock, [3, 4, 6, 3], activation=activation, **kwargs)
 
 
 def bresnet50(activation='softplus', version='bregman', **kwargs: Any):
@@ -627,78 +615,78 @@ def bresnet50(activation='softplus', version='bregman', **kwargs: Any):
     if version.lower() == 'standard':
         return _resnet("resnet50", Bottleneck, [3, 4, 6, 3], **kwargs)
     else:
-        return _bresnet(BregmanBasicBlock, [3, 4, 6, 3], activation=activation, **kwargs)
+        return _bresnet(BregmanBottleneck, [3, 4, 6, 3], activation=activation, **kwargs)
 
 
-def resnet101(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""ResNet-101 model from
-    `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
+def bresnet101(activation='softplus', version='bregman', **kwargs: Any):
+    r"""Bregman ResNet-101 model
     """
-    return _resnet("resnet101", Bottleneck, [3, 4, 23, 3], pretrained, progress, **kwargs)
+    if version.lower() == 'standard':
+        return _resnet("resnet101", Bottleneck, [3, 4, 23, 3], **kwargs)
+    else:
+        return _bresnet(BregmanBottleneck, [3, 4, 23, 3], activation=activation, **kwargs)
 
 
-def resnet152(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""ResNet-152 model from
-    `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
+def bresnet152(activation='softplus', version='bregman', **kwargs: Any):
+    r"""Bregman ResNet-152 model
     """
-    return _resnet("resnet152", Bottleneck, [3, 8, 36, 3], pretrained, progress, **kwargs)
+    if version.lower() == 'standard':
+        return _resnet("resnet151", Bottleneck, [3, 8, 36, 3], **kwargs)
+    else:
+        return _bresnet(BregmanBottleneck, [3, 8, 36, 3], activation=activation, **kwargs)
 
 
-def resnext50_32x4d(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""ResNeXt-50 32x4d model from
-    `"Aggregated Residual Transformation for Deep Neural Networks" <https://arxiv.org/pdf/1611.05431.pdf>`_.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
+def bresnext50_32x4d(activation='softplus', version='bregman', **kwargs: Any):
+    r"""Bregman ResNeXt-50 32x4d model
     """
     kwargs["groups"] = 32
     kwargs["width_per_group"] = 4
-    return _resnet("resnext50_32x4d", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+    if version.lower() == 'standard':
+        return _resnet("resnext50_32x4d", Bottleneck, [3, 4, 6, 3], **kwargs)
+    else:
+        return _bresnet(BregmanBottleneck, [3, 4, 6, 3], activation=activation, **kwargs)
 
 
-def resnext101_32x8d(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""ResNeXt-101 32x8d model from
-    `"Aggregated Residual Transformation for Deep Neural Networks" <https://arxiv.org/pdf/1611.05431.pdf>`_.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
+def bresnext101_32x8d(activation='softplus', version='bregman', **kwargs: Any):
+    r"""Bregman ResNeXt-101 32x8d model
     """
     kwargs["groups"] = 32
     kwargs["width_per_group"] = 8
-    return _resnet("resnext101_32x8d", Bottleneck, [3, 4, 23, 3], pretrained, progress, **kwargs)
+    if version.lower() == 'standard':
+        return _resnet("resnext101_32x8d", Bottleneck, [3, 4, 23, 3], **kwargs)
+    else:
+        return _bresnet(BregmanBottleneck, [3, 4, 23, 3], activation=activation, **kwargs)
 
 
-def wide_resnet50_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""Wide ResNet-50-2 model from
-    `"Wide Residual Networks" <https://arxiv.org/pdf/1605.07146.pdf>`_.
+def wide_bresnet50_2(activation='softplus', version='bregman', **kwargs: Any):
+    r"""Wide Bregman ResNet-50-2 model
     The model is the same as ResNet except for the bottleneck number of channels
     which is twice larger in every block. The number of channels in outer 1x1
     convolutions is the same, e.g. last block in ResNet-50 has 2048-512-2048
     channels, and in Wide ResNet-50-2 has 2048-1024-2048.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
+
+    Wide ResNet-50-2 model from
+    `"Wide Residual Networks" <https://arxiv.org/pdf/1605.07146.pdf>`_.
     """
     kwargs["width_per_group"] = 64 * 2
-    return _resnet("wide_resnet50_2", Bottleneck, [3, 4, 6, 3], pretrained, progress, **kwargs)
+    if version.lower() == 'standard':
+        return _resnet("wide_resnet50_2", Bottleneck, [3, 4, 6, 3], **kwargs)
+    else:
+        return _bresnet(BregmanBottleneck, [3, 4, 6, 3], activation=activation, **kwargs)
 
 
-def wide_resnet101_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:
-    r"""Wide ResNet-101-2 model from
-    `"Wide Residual Networks" <https://arxiv.org/pdf/1605.07146.pdf>`_.
+def wide_bresnet101_2(activation='softplus', version='bregman', **kwargs: Any):
+    r"""Wide Bregman ResNet-101-2 model
     The model is the same as ResNet except for the bottleneck number of channels
     which is twice larger in every block. The number of channels in outer 1x1
     convolutions is the same, e.g. last block in ResNet-50 has 2048-512-2048
     channels, and in Wide ResNet-50-2 has 2048-1024-2048.
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
+
+    Wide ResNet-101-2 model from
+    `"Wide Residual Networks" <https://arxiv.org/pdf/1605.07146.pdf>`_.
     """
     kwargs["width_per_group"] = 64 * 2
-    return _resnet("wide_resnet101_2", Bottleneck, [3, 4, 23, 3], pretrained, progress, **kwargs)
+    if version.lower() == 'standard':
+        return _resnet("wide_resnet101_2", Bottleneck, [3, 4, 23, 3], **kwargs)
+    else:
+        return _bresnet(BregmanBottleneck, [3, 4, 23, 3], activation=activation, **kwargs)
