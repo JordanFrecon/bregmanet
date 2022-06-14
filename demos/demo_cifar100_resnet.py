@@ -2,7 +2,7 @@ import torch
 import torchvision.transforms as transforms
 import torchvision
 import matplotlib.pyplot as plt
-from misc import optimization as optim
+from demos.utils import optimization as optim
 import bregmanet as brn
 
 # In the original paper 'Deep Residual Learning for Image Recognition' they use:

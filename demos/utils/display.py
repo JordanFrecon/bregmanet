@@ -1,6 +1,6 @@
 import torch
 from matplotlib import pyplot
-from misc.utils import get_nn_parameters
+from demos.utils.utils import get_nn_parameters
 import numpy as np
 
 

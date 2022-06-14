@@ -1,12 +1,10 @@
 import torch
 import torchvision.transforms as transforms
 import torchvision
-import time
 import matplotlib.pyplot as plt
-from misc import optimization as optim
+from demos.utils import optimization as optim
 import bregmanet as bnn
 
-start_time = time.time()
 
 # In the original paper 'Deep Residual Learning for Image Recognition' they use:
 #   - weight_decay=1e-4 and momentum=0.9
@@ -60,7 +58,6 @@ if __name__ == '__main__':
     # Print performance
     accuracy = optim.accuracy(bresnet, test_loader=test_loader, device=device)
     print('accuracy:\t', accuracy)
-    print("--- %s seconds ---" % (time.time() - start_time))
 
     # Plot training loss
     plt.figure()

@@ -1,9 +1,9 @@
 import torch
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
-from misc import optimization as optim
+from demos.utils import optimization as optim
 import bregmanet as brn
-from misc.imagenet import ImageNet
+from demos.utils.imagenet import ImageNet
 
 # In the original paper 'Deep Residual Learning for Image Recognition' they use:
 #   - weight_decay=1e-4 and momentum=0.9

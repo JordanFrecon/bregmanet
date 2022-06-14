@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+src/bregmanet/__init__.py
+src/bregmanet/mlp.py
+src/bregmanet/resnet_large.py
+src/bregmanet/resnet_small.py
+src/bregmanet.egg-info/PKG-INFO
+src/bregmanet.egg-info/SOURCES.txt
+src/bregmanet.egg-info/dependency_links.txt
+src/bregmanet.egg-info/top_level.txt
+src/bregmanet/utils/__init__.py
+src/bregmanet/utils/activation.py
+src/bregmanet/utils/weight.py

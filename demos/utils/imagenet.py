@@ -1,7 +1,5 @@
 import torch
-import torchvision
 import os
-from torchvision.io import read_image
 import PIL
 import pandas
 

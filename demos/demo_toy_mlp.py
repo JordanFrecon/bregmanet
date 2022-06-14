@@ -1,7 +1,7 @@
 import torch
 from matplotlib import pyplot
 import bregmanet as bnn
-from misc import optimization as optim, display as dsp, data as data
+from demos.utils import optimization as optim, display as dsp, data as data
 
 """
 Training and layer-wise analysis of (Bregman) MLP on the Two-Spiral toy dataset
