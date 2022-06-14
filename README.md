@@ -1,6 +1,6 @@
 # BregmaNet : Bregman Neural Networks
 
-![release](https://img.shields.io/github/v/release/JordanFrecon/bregmanet)
+![release](https://img.shields.io/github/v/release/JordanFrecon/bregmanet?include_prereleases)
 ![license](https://img.shields.io/github/license/JordanFrecon/bregmanet)
 [![PyPI version](https://badge.fury.io/py/bregmanet.svg)](https://badge.fury.io/py/bregmanet)
 
