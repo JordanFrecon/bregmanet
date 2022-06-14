@@ -24,7 +24,7 @@ To date, implemented models cover Bregman variants of multi-layer perceptrons an
 
 ### :clipboard: Requirements
 
-- PyTorch version >=1.4.0
+- PyTorch version >=1.7.1
 - Python version >=3.6
 - Torchvision version >=0.8.2
 
