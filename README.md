@@ -1,7 +1,7 @@
 # BregmaNet : Bregman Neural Networks
 
-![release](https://img.shields.io/github/v/release/JordanFrecon/bregmanet?include_prereleases)
 ![license](https://img.shields.io/github/license/JordanFrecon/bregmanet)
+![release](https://img.shields.io/github/v/release/JordanFrecon/bregmanet?include_prereleases)
 ![PyPI](https://img.shields.io/pypi/v/bregmanet)
 
 [BregmaNet](https://github.com/JordanFrecon/bregmanet) is a PyTorch library providing multiple [Bregman Neural Networks](https://jordan-frecon.com/download/2022_Frecon_J_p-icml_bnn.pdf).
