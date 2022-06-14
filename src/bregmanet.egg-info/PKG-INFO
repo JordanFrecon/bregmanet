@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: bregmanet
-Version: 0.2.5
+Version: 1.0.0
 Summary: Bregman Neural Networks
 Home-page: https://github.com/JordanFrecon/bregmanet
 Author: Jordan Frecon
@@ -12,7 +12,9 @@ License-File: LICENSE
 
 # BregmaNet : Bregman Neural Networks
 
- [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![license](https://img.shields.io/github/license/JordanFrecon/bregmanet)
+![release](https://img.shields.io/github/v/release/JordanFrecon/bregmanet?include_prereleases)
+![PyPI](https://img.shields.io/pypi/v/bregmanet)
 
 [BregmaNet](https://github.com/JordanFrecon/bregmanet) is a PyTorch library providing multiple [Bregman Neural Networks](https://jordan-frecon.com/download/2022_Frecon_J_p-icml_bnn.pdf).
 To date, implemented models cover Bregman variants of multi-layer perceptrons and various residual networks.
@@ -34,7 +36,7 @@ To date, implemented models cover Bregman variants of multi-layer perceptrons an
 
 ### :clipboard: Requirements
 
-- PyTorch version >=1.4.0
+- PyTorch version >=1.7.1
 - Python version >=3.6
 - Torchvision version >=0.8.2
 
@@ -140,8 +142,10 @@ If you use this package, please cite the following work:
 
 ## Contribution and Acknowledgments
 
+Jordan Frecon would like to express his gratitude to the [Department of Computational Statistics and Machine Learning](https://www.iit.it/web/computational-statistics-and-machine-learning) (IIT, Genova, Italy) where part of this work was conducted during his postdoctoral position. The authors gratefully acknowledge the financial support of the French Agence Nationale de la Recherche (ANR), under grant ANR-20-CHIA-0021-01 ([project RAIMO](https://chaire-raimo.github.io)).
+
 The proposed BregmanResNets for CIFAR-10 are based on a rework of the ResNet implementation of [Yerlan Idelbayev](https://github.com/akamaster/pytorch_resnet_cifar10).
-Other models are devised by hinging upon the official PyTorch/TorchVision repository. For more information, please refer to:
+Other ResNet models are devised by hinging upon the official PyTorch/TorchVision repository. For more information, please refer to:
 - ResNet: ["Deep Residual Learning for Image Recognition"](https://arxiv.org/pdf/1512.03385.pdf) 
 - ResNeXt: ["Aggregated Residual Transformation for Deep Neural Networks"](https://arxiv.org/pdf/1611.05431.pdf)
 - WideResNet: ["Wide Residual Networks"](https://arxiv.org/pdf/1605.07146.pdf)
