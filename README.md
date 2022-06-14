@@ -130,7 +130,7 @@ If you use this package, please cite the following work:
 
 ## Contribution and Acknowledgments
 
-Jordan Frecon would like to express his gratitude to the Department of Computational Statistics and Machine Learning (IIT, Genova, Italy) where part of this work was conducted during his postdoctoral position. The authors gratefully acknowledge the financial support of the French Agence Nationale de la Recherche (ANR), under grant ANR-20-CHIA-0021-01 ([project RAIMO](https://chaire-raimo.github.io)).
+Jordan Frecon would like to express his gratitude to the [Department of Computational Statistics and Machine Learning](https://www.iit.it/web/computational-statistics-and-machine-learning) (IIT, Genova, Italy) where part of this work was conducted during his postdoctoral position. The authors gratefully acknowledge the financial support of the French Agence Nationale de la Recherche (ANR), under grant ANR-20-CHIA-0021-01 ([project RAIMO](https://chaire-raimo.github.io)).
 
 The proposed BregmanResNets for CIFAR-10 are based on a rework of the ResNet implementation of [Yerlan Idelbayev](https://github.com/akamaster/pytorch_resnet_cifar10).
 Other models are devised by hinging upon the official PyTorch/TorchVision repository. For more information, please refer to:
