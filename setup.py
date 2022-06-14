@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 #    requirements = f.read().splitlines()
 
 setuptools.setup(name='bregmanet',
-      version='0.2.5',
+      version='0.1.1',
       author='Jordan Frecon',
       author_email='jordan.frecon@gmail.com',
       description='Bregman Neural Networks',
