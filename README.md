@@ -72,7 +72,7 @@ For a *sigmoid*-based MLP with
 
 ```python
 import bregmanet
-model = bregmanet.MLP(activation='sigmoid', num_neurons=[1024, 1024, 512], input_dim=1024, output_dim=10)
+model = bregmanet.MLP(activation='sigmoid', input_dim=1024, hidden_dim=[1024, 1024, 512], output_dim=10)
 ```
 </p></details>
 
